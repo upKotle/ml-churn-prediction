@@ -2,7 +2,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 
-from preprocessing import load_and_prepare_data
+from src.preprocessing import load_and_prepare_data
 
 
 def train_model(data_path):
@@ -12,10 +12,7 @@ def train_model(data_path):
         X, y, test_size=0.2, random_state=42, stratify=y
     )
 
-    model = LogisticRegression(
-    max_iter=1000,
-    solver="liblinear"
-)
+    model = LogisticRegression(max_iter=1000, solver="liblinear")
     model.fit(X_train, y_train)
 
     y_pred = model.predict_proba(X_test)[:, 1]
